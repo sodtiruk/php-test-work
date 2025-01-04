@@ -1,0 +1,32 @@
+name: PHP Docker CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-php-app .
+
+    - name: Run Docker container
+      run: |
+        docker run -d -p 8080:80 my-php-app
+
+    - name: Test container (optional, สามารถเพิ่มคำสั่งทดสอบที่ต้องการ)
+      run: |
+        curl -s http://localhost:8080 | grep "PHP"
