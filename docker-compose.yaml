@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    image: php:8.0-apache
+    container_name: php-apache-test
+    ports:
+      - "5056:80"
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
