@@ -8,16 +8,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'message' => 'ข้อมูลได้รับเรียบร้อยแล้ว',
         'data' => $data
     ];
-    
-
 
     // ส่ง JSON กลับไปยัง JavaScript
     header('Content-Type: application/json');
-    echo json_encode($response);
+    // echo json_encode($response);
+    $result = json_encode($response);
 
+    echo $result;
+    
 
     exit;
 }
+?>
+
+<?php 
+
 ?>
 
 <!DOCTYPE html>
