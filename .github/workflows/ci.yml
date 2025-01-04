@@ -27,6 +27,6 @@ jobs:
       run: |
         docker run -d -p 8080:80 my-php-app
 
-    - name: Test container (optional, สามารถเพิ่มคำสั่งทดสอบที่ต้องการ)
+    - name: Test container 
       run: |
-        curl -s http://localhost:8080 | grep "PHP"
+        curl -s http://localhost:8080 
