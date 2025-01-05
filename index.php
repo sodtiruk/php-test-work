@@ -21,14 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo $result;
     exit;
 }
- 
 
 
 
 ?>
 
 
-<?php 
+<?php
 
 ?>
 
@@ -48,7 +47,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script>
 
-        document.getElementById('sendData').addEventListener('click', async () => {
+        // document.getElementById('sendData').addEventListener('click', async () => {
+        //     // ข้อมูลที่ต้องการส่งไป PHP
+        //     const dataToSend = {
+        //         name: "John Doe",
+        //         age: 25,
+        //         job: "Developer"
+        //     };
+
+        //     try {
+        //         // ส่งข้อมูล JSON ไปยัง PHP ด้วย fetch
+        //         const response = await fetch('index.php', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify(dataToSend)
+        //         });
+
+        //         // รับผลลัพธ์ที่ PHP ส่งกลับมา
+        //         const result = await response.json();
+        //         console.log(result);
+        //         document.getElementById('response').innerText = JSON.stringify(result, null, 2);
+        //     } catch (error) {
+        //         console.error('Error:', error);
+        //     }
+        // });
+
+
+        document.addEventListener('DOMContentLoaded', async () => {
             // ข้อมูลที่ต้องการส่งไป PHP
             const dataToSend = {
                 name: "John Doe",
@@ -74,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 console.error('Error:', error);
             }
         });
+
     </script>
 </body>
 
