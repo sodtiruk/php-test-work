@@ -1,4 +1,8 @@
 <?php
+
+// ด่านบน php ห้ามว่างป่าว
+$result = null;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // รับ JSON ที่ส่งมาจาก JavaScript
     $data = json_decode(file_get_contents('php://input'), true);
@@ -15,11 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = json_encode($response);
 
     echo $result;
-    
-
     exit;
 }
+ 
+
+
+
 ?>
+
 
 <?php 
 
@@ -40,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="response"></div>
 
     <script>
+
         document.getElementById('sendData').addEventListener('click', async () => {
             // ข้อมูลที่ต้องการส่งไป PHP
             const dataToSend = {
