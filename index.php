@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // ด่านบน php ห้ามว่างป่าว
 $result = null;
 
@@ -7,29 +7,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // รับ JSON ที่ส่งมาจาก JavaScript
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // ประมวลผลข้อมูล
-    $response = [
-        'message' => 'ข้อมูลได้รับเรียบร้อยแล้ว',
-        'data' => $data
-    ];
+    // if ((isset($data['name']))){
+        
+        // ประมวลผลข้อมูล
+        $response = [
+            'message' => 'ข้อมูลได้รับเรียบร้อยแล้ว',
+            'data' => $data
+        ];
 
-    // ส่ง JSON กลับไปยัง JavaScript
-    header('Content-Type: application/json');
-    // echo json_encode($response);
-    $result = json_encode($response);
+        // ส่ง JSON กลับไปยัง JavaScript
+        header('Content-Type: application/json');
+        // echo json_encode($response);
+        $result = json_encode($response);
 
-    echo $result;
+        // echo $result;
+        print_r($result);
+        
+        $_SESSION['lang_data'] = $response;
+
+    // }
+
     exit;
 }
-
-
-
 ?>
 
-
-<?php
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,14 +79,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         document.addEventListener('DOMContentLoaded', async () => {
             // ข้อมูลที่ต้องการส่งไป PHP
             const dataToSend = {
-                name: "John Doe",
-                age: 25,
-                job: "Developer"
+                "data2": {
+                    name: "John Doe",
+                    age: 25,
+                    job: "Developer"
+                },
+                "data1": {
+                    "phone": 12345,
+                    "country": "ฟกหดฟกหด", 
+                }
             };
 
             try {
                 // ส่งข้อมูล JSON ไปยัง PHP ด้วย fetch
-                const response = await fetch('index.php', {
+                const response = await fetch('', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -101,8 +108,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 console.error('Error:', error);
             }
         });
+        
 
     </script>
+
+    <?php 
+        // session_start(); 
+
+        print_r($_SESSION['lang_data']);
+
+    ?>
+
 </body>
 
 </html>
